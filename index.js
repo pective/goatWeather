@@ -1,6 +1,8 @@
 async function processJson(object) {
 	const obj = await object.json();
 
+	console.info(obj);
+
 	return {
 		temp: obj.currentConditions.temp,
 		condition: obj.currentConditions.conditions,
@@ -27,5 +29,16 @@ const submit = document.querySelector("#searchBtn");
 
 submit.addEventListener("click", () => {
 	const location = document.querySelector("#locationSearch");
-	getWeather(location.value);
+
+	async function buildDom() {
+		const response = await getWeather(location.value);
+
+		const condDisplay = document.querySelector(".condDisplay h4");
+		condDisplay.textContent = `${response.condition}`;
+
+		const tempDisplay = document.querySelector(".tempDisplay h1");
+		tempDisplay.textContent = `${response.temp}°C`;
+	}
+
+	buildDom();
 });

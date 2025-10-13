@@ -1,3 +1,35 @@
+@font-face {
+    font-family: FlexBold;
+    src: url(./fonts/flex-Bold.ttf);
+}
+
+@font-face {
+    font-family: FlexRegular;
+    src: url(./fonts/flex-Regular.ttf);
+}
 body {
     background: #1F2536;
+}
+
+.condDisplay {
+    width: max-content;
+    margin: auto;
+}
+
+.condDisplay h4 {
+    font-family: FlexRegular;
+    color: #E2E2E9;
+    margin: 0;
+}
+
+.tempDisplay {
+    width: max-content;
+    margin: auto;
+}
+
+.tempDisplay h1 {
+    font-family: FlexBold;
+    font-size: 6rem;
+    color: #ADC6FF;
+    margin: 0;
 }
