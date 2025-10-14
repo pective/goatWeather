@@ -22,6 +22,11 @@ async function getWeather(location) {
 		return response;
 	} catch (error) {
 		console.error(error);
+
+		return {
+			temp: "Error",
+			condition: "",
+		}
 	}
 }
 
