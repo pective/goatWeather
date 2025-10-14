@@ -24,7 +24,7 @@ async function getWeather(location) {
 		console.error(error);
 
 		return {
-			temp: "Error",
+			temp: "fix the location twin",
 			condition: "",
 		}
 	}
@@ -41,8 +41,17 @@ submit.addEventListener("click", () => {
 		const condDisplay = document.querySelector(".condDisplay h4");
 		condDisplay.textContent = `${response.condition}`;
 
+		console.log(typeof(response.temp));
+
 		const tempDisplay = document.querySelector(".tempDisplay h1");
-		tempDisplay.textContent = `${response.temp}°C`;
+		if (typeof(response.temp) === "number") {
+			tempDisplay.textContent = `${Math.round(response.temp)}°C`;
+		} else {
+			tempDisplay.textContent = `${response.temp}`;
+		}
+
+		const insightsDisplay = document.querySelector(".insightsBox p");
+		insightsDisplay.textContent = `${response.desc}`;
 	}
 
 	buildDom();
