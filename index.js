@@ -1,10 +1,12 @@
+const container = document.querySelector(".container");
+
 async function processJson(object) {
 	const obj = await object.json();
 
 	console.info(obj);
 
 	return {
-		temp: obj.currentConditions.temp,
+		temp: Math.round(obj.currentConditions.temp),
 		condition: obj.currentConditions.conditions,
 		desc: obj.description,
 	};
@@ -24,33 +26,41 @@ async function getWeather(location) {
 		console.error(error);
 
 		return {
-			temp: "fix the location twin",
-			condition: "",
-		}
+			temp: 0,
+			condition: "None",
+			desc: "Error: Check console",
+		};
 	}
 }
 
 const submit = document.querySelector("#searchBtn");
 
+async function buildDom(responsePromise) {
+	const response = await responsePromise;
+
+	const resultHtml = `
+			<div class="tempDisplay">
+				<div class="condDisplay">
+					<h4>${response.condition}</h4>
+				</div>
+		
+			<h1>${response.temp}°C</h1>
+			</div>
+
+			<div class="insightsBox">
+				<h4>Insights</h4>
+				<p>${response.desc}</p>
+			</div>
+		`;
+
+	container.innerHTML = resultHtml;
+}
+
 submit.addEventListener("click", () => {
 	const location = document.querySelector("#locationSearch");
 
-	async function buildDom() {
-		const response = await getWeather(location.value);
-
-		const condDisplay = document.querySelector(".condDisplay h4");
-		condDisplay.textContent = `${response.condition}`;
-
-		const tempDisplay = document.querySelector(".tempDisplay h1");
-		if (typeof(response.temp) === "number") {
-			tempDisplay.textContent = `${Math.round(response.temp)}°C`;
-		} else {
-			tempDisplay.textContent = `${response.temp}`;
-		}
-
-		const insightsDisplay = document.querySelector(".insightsBox p");
-		insightsDisplay.textContent = `${response.desc}`;
-	}
-
-	buildDom();
+	buildDom(getWeather(location.value));
 });
+
+//initial dom
+buildDom(getWeather("Bangkok"));
