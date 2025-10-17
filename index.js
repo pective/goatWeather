@@ -47,9 +47,15 @@ async function buildDom(responsePromise) {
 			<h1>${response.temp}°C</h1>
 			</div>
 
-			<div class="insightsBox">
+			<div class="boxClass insightsBox">
 				<h4>Insights</h4>
 				<p>${response.desc}</p>
+			</div>
+
+			<div class="boxClass hourlyBox">
+				<h4>Hourly Forecast</h4>
+
+				
 			</div>
 		`;
 

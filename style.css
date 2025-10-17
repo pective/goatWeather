@@ -34,7 +34,7 @@ body {
     margin: 0;
 }
 
-.insightsBox {
+.boxClass {
     background: #0D1323;
     width: 500px;
     height: 100px;
@@ -42,9 +42,9 @@ body {
     border-radius: 20px;
     font-family: FlexRegular;
     color: #BFC6DC;
-    margin: auto;
+    margin: 25px auto;
 }
 
-.insightsBox h4 {
-    margin: 15px 0;
+.boxClass h4 {
+    margin: 10px 0;
 }
