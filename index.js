@@ -9,6 +9,7 @@ async function processJson(object) {
 		temp: Math.round(obj.currentConditions.temp),
 		condition: obj.currentConditions.conditions,
 		desc: obj.description,
+		currentDay: obj.days[0],
 	};
 }
 
@@ -55,11 +56,27 @@ async function buildDom(responsePromise) {
 			<div class="boxClass hourlyBox">
 				<h4>Hourly Forecast</h4>
 
-				
+				<div class="hourlyElementContainer">
+
 			</div>
 		`;
 
 	container.innerHTML = resultHtml;
+
+	async function buildHourly(response) {
+		response.currentDay.hours.forEach(e => {
+			const hourlyElement = `
+				<div class="hourlyElement">
+					<div class="hourlyTemp">${e.temp}</div>
+					<div class="hourlyTime">${response.currentDay.hours.indexOf(e)}:00</div>
+				</div>
+			`
+			document.querySelector(".hourlyElementContainer").innerHTML += hourlyElement;
+
+		});
+	}
+
+	buildHourly(response);
 }
 
 submit.addEventListener("click", () => {
@@ -69,4 +86,4 @@ submit.addEventListener("click", () => {
 });
 
 //initial dom
-buildDom(getWeather("Bangkok"));
+// buildDom(getWeather("Bangkok"));
