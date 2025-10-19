@@ -69,7 +69,7 @@ async function buildDom(responsePromise) {
 		response.currentDay.hours.forEach((e) => {
 			const hourlyElement = `
 				<div class="hourlyElement">
-					<div class="hourlyTemp">${e.temp}</div>
+					<div class="hourlyTemp">${Math.round(e.temp)}°</div>
 					<div class="hourlyTime">${response.currentDay.hours.indexOf(e)}:00</div>
 				</div>
 			`;
