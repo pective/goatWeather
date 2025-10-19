@@ -11,6 +11,24 @@ body {
     background: #1F2536;
 }
 
+#locationSearch {
+    background: transparent;
+    border: none;
+    color: #C1C3CD;
+    border-radius: 20px;
+    position: fixed;
+    top: 5px;
+    left: 31%;
+    width: 200px;
+    height: 30px;
+    font-size: 1.2rem;
+}
+
+#locationSearch:focus {
+    border: none;
+    outline: none;
+}
+
 .condDisplay {
     width: max-content;
     margin: auto;
@@ -43,9 +61,12 @@ body {
     font-family: FlexRegular;
     color: #BFC6DC;
     margin: 25px auto;
-    display: flex;
     flex-direction: column;
     position: relative;
+}
+
+.boxClass p {
+    margin: 0;
 }
 
 .boxClass svg {
@@ -62,6 +83,10 @@ body {
     margin-top: 2px;
     position: relative;
     left: 25px;
+}
+
+.insightsBox {
+    height: 80px;
 }
 
 .hourlyBox {

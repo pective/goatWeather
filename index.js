@@ -6,6 +6,7 @@ async function processJson(object) {
 	console.info(obj);
 
 	return {
+		resolvedAddress: obj.resolvedAddress,
 		temp: Math.round(obj.currentConditions.temp),
 		condition: obj.currentConditions.conditions,
 		desc: obj.description,
@@ -34,10 +35,12 @@ async function getWeather(location) {
 	}
 }
 
-const submit = document.querySelector("#searchBtn");
+const locationSearch = document.querySelector("#locationSearch");
 
 async function buildDom(responsePromise) {
 	const response = await responsePromise;
+
+	locationSearch.textContent = response.resolvedAddress;
 
 	const resultHtml = `
 			<div class="tempDisplay">
@@ -81,10 +84,10 @@ async function buildDom(responsePromise) {
 	buildHourly(response);
 }
 
-submit.addEventListener("click", () => {
-	const location = document.querySelector("#locationSearch");
-
-	buildDom(getWeather(location.value));
+locationSearch.addEventListener("keydown", (event) => {
+	if (event.key === "Enter") {
+		buildDom(getWeather(locationSearch.value));
+	}
 });
 
 //initial dom
